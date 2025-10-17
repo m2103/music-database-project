@@ -66,7 +66,6 @@ CREATE TABLE user
 CREATE TABLE rating
     (
         ratingID INT AUTO_INCREMENT PRIMARY KEY,
-        parentID INT, -- if filled, rating must be NULL. treat as a comment
         comment VARCHAR(511),
         userID INT NOT NULL,
         timestamp TIMESTAMP,

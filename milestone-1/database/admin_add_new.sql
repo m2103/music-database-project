@@ -1,3 +1,8 @@
+---
+-- advanced feature draft
+-- DO NOT GRADE (feedback is OK)
+--
+
 INSERT INTO artist (name)
 VALUES (:name_parameter);
 
@@ -18,3 +23,8 @@ VALUES (:song_parameter, :genre_parameter)
 ;
 
 -- how to add authorization?
+
+---
+-- advanced feature draft
+-- DO NOT GRADE (feedback is OK)
+--

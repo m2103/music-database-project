@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { SongCard } from "../components/SongCard.tsx";
 
-type Song = { songID:number; title:string; artist_name:string; avg_rating:number; ratings_count:number; };
+type Song = { 
+  songID: number;
+  title: string; 
+  artist_name: string; 
+  avg_rating: number; 
+  ratings_count: number; 
+};
 const API = "http://127.0.0.1:8000";
 
 export default function Home() {
@@ -10,8 +16,8 @@ export default function Home() {
   const k = 1;
 
   useEffect(() => {
-    fetch(`${API}/feature1.php?k=${k}`).then(r=>r.json()).then(setTopAvg);
-    fetch(`${API}/feature2.php`).then(r=>r.json()).then(setMostRated);
+    fetch(`${API}/homepage.php?mode=avg&k=${k}`).then(r=>r.json()).then(setTopAvg);
+    fetch(`${API}/homepage.php?mode=count&k=${k}`).then(r=>r.json()).then(setMostRated);
   }, []);
 
   return (

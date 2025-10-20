@@ -37,13 +37,13 @@ CREATE TABLE song
         FOREIGN KEY(albumID) REFERENCES album(albumID)
     );
 
-CREATE TABLE genres
+CREATE TABLE genre
     (
         genreID INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL
     );
 
-CREATE TABLE song_genres
+CREATE TABLE song_genre
     (
         songID INT,
         genreID INT,

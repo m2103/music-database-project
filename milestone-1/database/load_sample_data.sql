@@ -33,9 +33,9 @@ INSERT INTO album (name, artistID, typeID, releaseDate, rating, albumCover) VALU
 ('Everyday Life', 5, 1, '2019-11-22', 4.0, 'https://example.com/everydaylife.jpg');
 
 -- ------------------------------
--- Genres
+-- Genre
 -- ------------------------------
-INSERT INTO genres (name) VALUES
+INSERT INTO genre (name) VALUES
 ('Pop'),('Rock'),('R&B'),('Alternative'),('Indie'),
 ('Dance'),('Electronic'),('Hip-Hop'),('Acoustic'),('Soul');
 
@@ -70,9 +70,9 @@ INSERT INTO song (name, artistID, albumID, trackNumber, releaseDate, rating, spo
 ('Fever', 2, 3, 5, '2020-03-27', 4.3, 'https://open.spotify.com/track/fever');
 
 -- ------------------------------
--- Song Genres
+-- Song Genre
 -- ------------------------------
-INSERT INTO song_genres (songID, genreID) VALUES
+INSERT INTO song_genre (songID, genreID) VALUES
 (1,3),(2,3),(3,3),(4,3),(5,3),
 (6,1),(7,1),(8,1),(20,1),(19,1),
 (9,2),(10,2),(11,2),(21,2),(15,2),

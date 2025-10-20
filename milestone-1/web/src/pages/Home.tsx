@@ -7,7 +7,7 @@ const API = "http://127.0.0.1:8000";
 export default function Home() {
   const [topAvg, setTopAvg] = useState<Song[]>([]);
   const [mostRated, setMostRated] = useState<Song[]>([]);
-  const k = 2;
+  const k = 1;
 
   useEffect(() => {
     fetch(`${API}/feature1.php?k=${k}`).then(r=>r.json()).then(setTopAvg);
@@ -46,7 +46,7 @@ function Section({title, subtitle, children}:{title:string; subtitle?:string; ch
         <h2 style={{margin:0}}>{title}</h2>
         {subtitle && <small style={{opacity:.75}}>{subtitle}</small>}
       </div>
-      <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(220px,1fr))", gap:12, marginTop:12}}>
+      <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(180px,1fr))", gap:12, marginTop:12}}>
         {children}
       </div>
     </section>

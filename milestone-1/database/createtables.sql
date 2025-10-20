@@ -34,7 +34,8 @@ CREATE TABLE song
         rating DECIMAL(2, 1), -- 0-indexed
         spotifyURL VARCHAR(255),
         FOREIGN KEY(artistID) REFERENCES artist(artistID),
-        FOREIGN KEY(albumID) REFERENCES album(albumID)
+        FOREIGN KEY(albumID) REFERENCES album(albumID),
+        UNIQUE (albumID, trackNumber)
     );
 
 CREATE TABLE genre
@@ -47,7 +48,9 @@ CREATE TABLE song_genre
     (
         songID INT,
         genreID INT,
-        PRIMARY KEY(songID, genreID)
+        PRIMARY KEY(songID, genreID),
+        FOREIGN KEY(songID) REFERENCES song(songID) ON DELETE CASCADE,
+        FOREIGN KEY(genreID) REFERENCES genre(genreID) ON DELETE CASCADE
     );
 
 CREATE TABLE user
@@ -60,15 +63,19 @@ CREATE TABLE user
         dateJoined TIMESTAMP
     );
 
-CREATE TABLE rating
+CREATE TABLE review
     (
-        ratingID INT AUTO_INCREMENT PRIMARY KEY,
-        comment VARCHAR(511),
+        reviewID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
-        timestamp TIMESTAMP,
-        rating DECIMAL(1, 0),
-        ratedObjectID INT,
-        ratingType VARCHAR(15)
+        songID INT NOT NULL,
+        rating DECIMAL(1, 0) NOT NULL,
+        comment VARCHAR(511),
+        timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+        FOREIGN KEY(userID) REFERENCES user(userID) ON DELETE CASCADE,
+        FOREIGN KEY(songID) REFERENCES song(songID) ON DELETE CASCADE,
+        UNIQUE (userID, songID),
+        CHECK (rating BETWEEN 1 AND 5)
     );
 
-CREATE INDEX idx_rating_song_recent ON rating (ratingType, `timestamp`, ratedObjectID);
+CREATE INDEX idx_review_song_recent ON review (songID, timestamp);

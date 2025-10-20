@@ -27,6 +27,7 @@ php -S 127.0.0.1:8000 -t api
 
 ### 2. Start the frontend
 ```
+cd web
 npm run dev
 ```
 

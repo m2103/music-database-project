@@ -1,4 +1,6 @@
--- R6: Highest Average Rating in Past 7 Days
+USE music_app;
+
+SELECT 'R6: Highest Average Rating in Past 7 Days' as ______________;
 WITH week_stats AS (
     SELECT ratedObjectID AS songID,
            AVG(r.rating) AS avg_7days,
@@ -27,11 +29,11 @@ FROM week_stats ws
 JOIN lifetime_stats lt ON ws.songID = lt.songID
 JOIN song s ON s.songID = ws.songID
 JOIN artist a ON a.artistID = s.artistID
-WHERE ws.ratings_7days >= 2
+WHERE ws.ratings_7days >= 1
 ORDER BY ws.avg_7days DESC, ws.ratings_7days DESC, s.name ASC
 LIMIT 10;
 
--- R7: Most Rated in Past 7 Days
+SELECT 'R7: Most Rated in Past 7 Days' as ______________;
 WITH week_stats AS (
     SELECT ratedObjectID AS songID,
            COUNT(*) AS ratings_7days

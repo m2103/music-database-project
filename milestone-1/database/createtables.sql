@@ -17,7 +17,6 @@ CREATE TABLE album
         artistID INT NOT NULL,
         typeID INT NOT NULL,
         releaseDate DATE NOT NULL,
-        rating DECIMAL(2, 1),
         albumCover VARCHAR(255), -- URL
         FOREIGN KEY(artistID) REFERENCES artist(artistID),
         FOREIGN KEY(typeID) REFERENCES album_type(typeID)
@@ -31,7 +30,6 @@ CREATE TABLE song
         albumID INT NOT NULL,
         trackNumber DECIMAL(3, 0) NOT NULL,
         releaseDate DATE NOT NULL,
-        rating DECIMAL(2, 1), -- 0-indexed
         spotifyURL VARCHAR(255),
         FOREIGN KEY(artistID) REFERENCES artist(artistID),
         FOREIGN KEY(albumID) REFERENCES album(albumID),

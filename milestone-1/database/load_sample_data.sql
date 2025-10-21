@@ -24,13 +24,13 @@ INSERT INTO album_type (name) VALUES
 -- ------------------------------
 -- Albums
 -- ------------------------------
-INSERT INTO album (name, artistID, typeID, releaseDate, rating, albumCover) VALUES
-('After Hours', 1, 1, '2020-03-20', 4.5, 'https://example.com/afterhours.jpg'),
-('Dawn FM', 1, 1, '2022-01-07', 4.6, 'https://example.com/dawnfm.jpg'),
-('Future Nostalgia', 2, 1, '2020-03-27', 4.7, 'https://example.com/futurenostalgia.jpg'),
-('Evolve', 3, 1, '2017-06-23', 4.2, 'https://example.com/evolve.jpg'),
-('Happier Than Ever', 4, 1, '2021-07-30', 4.8, 'https://example.com/happier.jpg'),
-('Everyday Life', 5, 1, '2019-11-22', 4.0, 'https://example.com/everydaylife.jpg');
+INSERT INTO album (name, artistID, typeID, releaseDate, albumCover) VALUES
+('After Hours', 1, 1, '2020-03-20', 'https://example.com/afterhours.jpg'),
+('Dawn FM', 1, 1, '2022-01-07', 'https://example.com/dawnfm.jpg'),
+('Future Nostalgia', 2, 1, '2020-03-27', 'https://example.com/futurenostalgia.jpg'),
+('Evolve', 3, 1, '2017-06-23', 'https://example.com/evolve.jpg'),
+('Happier Than Ever', 4, 1, '2021-07-30', 'https://example.com/happier.jpg'),
+('Everyday Life', 5, 1, '2019-11-22', 'https://example.com/everydaylife.jpg');
 
 -- ------------------------------
 -- Genre
@@ -42,32 +42,32 @@ INSERT INTO genre (name) VALUES
 -- ------------------------------
 -- Songs (25 total)
 -- ------------------------------
-INSERT INTO song (name, artistID, albumID, trackNumber, releaseDate, rating, spotifyURL) VALUES
-('Blinding Lights', 1, 1, 1, '2019-11-29', 5.0, 'https://open.spotify.com/track/blindinglights'),
-('Save Your Tears', 1, 1, 2, '2020-03-20', 4.7, 'https://open.spotify.com/track/saveyourtears'),
-('Heartless', 1, 1, 3, '2019-11-27', 4.7, 'https://open.spotify.com/track/heartless'),
-('In Your Eyes', 1, 1, 4, '2020-03-20', 4.6, 'https://open.spotify.com/track/inyoureyes'),
-('Take My Breath', 1, 2, 1, '2021-08-06', 4.8, 'https://open.spotify.com/track/takemybreath'),
-('Levitating', 2, 3, 1, '2020-03-27', 4.8, 'https://open.spotify.com/track/levitating'),
-('Don''t Start Now', 2, 3, 2, '2019-10-31', 4.6, 'https://open.spotify.com/track/dontstartnow'),
-('Physical', 2, 3, 3, '2020-01-31', 4.5, 'https://open.spotify.com/track/physical'),
-('Believer', 3, 4, 1, '2017-02-01', 4.5, 'https://open.spotify.com/track/believer'),
-('Thunder', 3, 4, 2, '2017-04-27', 4.3, 'https://open.spotify.com/track/thunder'),
-('Something Just Like This', 3, 4, 3, '2017-02-22', 4.4, 'https://open.spotify.com/track/somethingjustlikethis'),
-('Happier Than Ever', 4, 5, 1, '2021-07-30', 4.9, 'https://open.spotify.com/track/happierthanever'),
-('Bad Guy', 4, 5, 2, '2019-03-29', 4.8, 'https://open.spotify.com/track/badguy'),
-('Therefore I Am', 4, 5, 3, '2020-11-12', 4.7, 'https://open.spotify.com/track/thereforeiam'),
-('Orphans', 5, 6, 1, '2019-10-24', 4.0, 'https://open.spotify.com/track/orphans'),
-('Everyday Life', 5, 6, 2, '2019-11-22', 3.9, 'https://open.spotify.com/track/everydaylife'),
-('Church', 5, 6, 3, '2019-11-22', 4.1, 'https://open.spotify.com/track/church'),
-('Higher Power', 5, 6, 4, '2021-05-07', 4.2, 'https://open.spotify.com/track/higherpower'),
-('Save Your Soul', 1, 2, 2, '2022-01-07', 4.5, 'https://open.spotify.com/track/saveyoursoul'),
-('Break My Heart', 2, 3, 4, '2020-03-25', 4.6, 'https://open.spotify.com/track/breakmyheart'),
-('Natural', 3, 4, 4, '2018-07-17', 4.3, 'https://open.spotify.com/track/natural'),
-('Billie Bossa Nova', 4, 5, 4, '2021-07-30', 4.5, 'https://open.spotify.com/track/billiebossa'),
-('Adventure of a Lifetime', 5, 6, 5, '2015-11-06', 4.2, 'https://open.spotify.com/track/adventureofalifetime'),
-('Blinding Hearts', 1, 2, 3, '2022-01-07', 4.4, 'https://open.spotify.com/track/blindinghearts'),
-('Fever', 2, 3, 5, '2020-03-27', 4.3, 'https://open.spotify.com/track/fever');
+INSERT INTO song (name, artistID, albumID, trackNumber, releaseDate, spotifyURL) VALUES
+('Blinding Lights', 1, 1, 1, '2019-11-29', 'https://open.spotify.com/track/blindinglights'),
+('Save Your Tears', 1, 1, 2, '2020-03-20', 'https://open.spotify.com/track/saveyourtears'),
+('Heartless', 1, 1, 3, '2019-11-27', 'https://open.spotify.com/track/heartless'),
+('In Your Eyes', 1, 1, 4, '2020-03-20', 'https://open.spotify.com/track/inyoureyes'),
+('Take My Breath', 1, 2, 1, '2021-08-06', 'https://open.spotify.com/track/takemybreath'),
+('Levitating', 2, 3, 1, '2020-03-27', 'https://open.spotify.com/track/levitating'),
+('Don''t Start Now', 2, 3, 2, '2019-10-31', 'https://open.spotify.com/track/dontstartnow'),
+('Physical', 2, 3, 3, '2020-01-31', 'https://open.spotify.com/track/physical'),
+('Believer', 3, 4, 1, '2017-02-01', 'https://open.spotify.com/track/believer'),
+('Thunder', 3, 4, 2, '2017-04-27', 'https://open.spotify.com/track/thunder'),
+('Something Just Like This', 3, 4, 3, '2017-02-22', 'https://open.spotify.com/track/somethingjustlikethis'),
+('Happier Than Ever', 4, 5, 1, '2021-07-30', 'https://open.spotify.com/track/happierthanever'),
+('Bad Guy', 4, 5, 2, '2019-03-29', 'https://open.spotify.com/track/badguy'),
+('Therefore I Am', 4, 5, 3, '2020-11-12', 'https://open.spotify.com/track/thereforeiam'),
+('Orphans', 5, 6, 1, '2019-10-24', 'https://open.spotify.com/track/orphans'),
+('Everyday Life', 5, 6, 2, '2019-11-22', 'https://open.spotify.com/track/everydaylife'),
+('Church', 5, 6, 3, '2019-11-22', 'https://open.spotify.com/track/church'),
+('Higher Power', 5, 6, 4, '2021-05-07', 'https://open.spotify.com/track/higherpower'),
+('Save Your Soul', 1, 2, 2, '2022-01-07', 'https://open.spotify.com/track/saveyoursoul'),
+('Break My Heart', 2, 3, 4, '2020-03-25', 'https://open.spotify.com/track/breakmyheart'),
+('Natural', 3, 4, 4, '2018-07-17', 'https://open.spotify.com/track/natural'),
+('Billie Bossa Nova', 4, 5, 4, '2021-07-30', 'https://open.spotify.com/track/billiebossa'),
+('Adventure of a Lifetime', 5, 6, 5, '2015-11-06', 'https://open.spotify.com/track/adventureofalifetime'),
+('Blinding Hearts', 1, 2, 3, '2022-01-07', 'https://open.spotify.com/track/blindinghearts'),
+('Fever', 2, 3, 5, '2020-03-27', 'https://open.spotify.com/track/fever');
 
 -- ------------------------------
 -- Song Genre

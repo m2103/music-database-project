@@ -87,7 +87,7 @@ lifetime_stats AS (
 SELECT 
     s.name AS song_name,
     a.name AS artist_name,
-    s.rating AS song_rating,
+    AVG(r.rating) AS song_rating,
     ab.name AS album_name,
     s.releaseDate AS song_date, 
     s.spotifyURL AS song_url,
@@ -98,6 +98,7 @@ FROM
     JOIN album AS ab ON s.albumID = ab.albumID
     LEFT JOIN song_genres AS sg ON s.songID = sg.songID
     LEFT JOIN genres AS g ON sg.genreID = g.genreID
+    LEFT JOIN review AS r ON s.songID = r.songID 
 WHERE 
     s.songID = 15  -- when a user clicks on a song,
                   --    the songID of that song gets passed

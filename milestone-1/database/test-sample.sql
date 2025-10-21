@@ -99,7 +99,7 @@ FROM
     LEFT JOIN song_genres AS sg ON s.songID = sg.songID
     LEFT JOIN genres AS g ON sg.genreID = g.genreID
 WHERE 
-    s.songID = ?  -- when a user clicks on a song,
+    s.songID = 15  -- when a user clicks on a song,
                   --    the songID of that song gets passed
                   --    into this query so that we display
                   --    the correct song.

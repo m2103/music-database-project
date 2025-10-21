@@ -63,3 +63,43 @@ JOIN song s ON s.songID = ws.songID
 JOIN artist a ON a.artistID = s.artistID
 ORDER BY ws.ratings_7days DESC, s.name ASC
 LIMIT 10;
+
+
+SELECT 'R7: View Song Details' as ______________;
+WITH week_stats AS (
+    SELECT ratedObjectID AS songID,
+           COUNT(*) AS ratings_7days
+    FROM rating
+    WHERE ratingType = 'song'
+      AND rating IS NOT NULL
+      AND timestamp >= NOW() - INTERVAL 7 DAY
+    GROUP BY ratedObjectID
+),
+lifetime_stats AS (
+    SELECT ratedObjectID AS songID,
+           ROUND(AVG(rating), 1) AS avg_alltime,
+           COUNT(*) AS ratings_alltime
+    FROM rating
+    WHERE ratingType = 'song'
+      AND rating IS NOT NULL
+    GROUP BY ratedObjectID
+)
+SELECT 
+    s.name AS song_name,
+    a.name AS artist_name,
+    s.rating AS song_rating,
+    ab.name AS album_name,
+    s.releaseDate AS song_date, 
+    s.spotifyURL AS song_url,
+    GROUP_CONCAT(g.name SEPARATOR ', ') AS genres
+FROM 
+    song AS s
+    JOIN artist AS a ON s.artistID = a.artistID
+    JOIN album AS ab ON s.albumID = ab.albumID
+    LEFT JOIN song_genres AS sg ON s.songID = sg.songID
+    LEFT JOIN genres AS g ON sg.genreID = g.genreID
+WHERE 
+    s.songID = ?  -- when a user clicks on a song,
+                  --    the songID of that song gets passed
+                  --    into this query so that we display
+                  --    the correct song.

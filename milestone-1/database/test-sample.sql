@@ -96,7 +96,7 @@ FROM
     song AS s
     JOIN artist AS a ON s.artistID = a.artistID
     JOIN album AS ab ON s.albumID = ab.albumID
-    LEFT JOIN song_genres AS sg ON s.songID = sg.songID
+    LEFT JOIN song_genre AS sg ON s.songID = sg.songID
     LEFT JOIN genres AS g ON sg.genreID = g.genreID
     LEFT JOIN review AS r ON s.songID = r.songID 
 WHERE 

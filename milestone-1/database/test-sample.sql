@@ -13,7 +13,7 @@ WITH week_stats AS (
 lifetime_stats AS (
   SELECT
     r.songID,
-    ROUND(AVG(r.rating), 1) AS avg_alltime,
+    AVG(r.rating) AS avg_alltime,
     COUNT(*) AS ratings_alltime
   FROM review r
   GROUP BY r.songID
@@ -44,7 +44,7 @@ WITH week_stats AS (
 lifetime_stats AS (
   SELECT
     r.songID,
-    ROUND(AVG(r.rating), 1) AS avg_alltime,
+    AVG(r.rating) AS avg_alltime,
     COUNT(*) AS ratings_alltime
   FROM review r
   GROUP BY r.songID
@@ -84,3 +84,16 @@ WHERE
                   --    the songID of that song gets passed
                   --    into this query so that we display
                   --    the correct song.
+
+SELECT 'R8: Submitting a review' as ______________;
+INSERT INTO review (userID, songID, rating, comment)
+VALUES (2, 5, 4, 'my favourite!');
+
+SELECT 'R9: View User Profile' as ______________;
+SELECT 
+    username AS userName,
+    email,
+    profilePicture,
+    DATE_FORMAT(dateJoined, '%Y-%m-%d') AS dateJoined
+FROM user
+WHERE userID = 1;

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS song_review_summary;
+DROP VIEW IF EXISTS song_summary;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS song_artist;
 DROP TABLE IF EXISTS album_artist;
@@ -5,5 +7,3 @@ DROP TABLE IF EXISTS song;
 DROP TABLE IF EXISTS album;
 DROP TABLE IF EXISTS artist;
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS song_review_summary;
-DROP VIEW IF EXISTS song_summary;

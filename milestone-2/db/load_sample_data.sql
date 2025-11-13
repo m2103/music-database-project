@@ -66,6 +66,36 @@ INSERT INTO song (name, albumID, trackNumber, releaseDate, spotifyURL) VALUES
 ('Fever', 2, 3, '2020-03-27', 'https://open.spotify.com/track/fever');
 
 -- ------------------------------
+-- Song Artist
+-- ------------------------------
+INSERT INTO song_artist (songID, artistID) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 3),
+(10, 3),
+(11, 3),
+(12, 4),
+(13, 4),
+(14, 4),
+(15, 5),
+(16, 5),
+(17, 5),
+(18, 5),
+(19, 1),
+(20, 2),
+(21, 3),
+(22, 4),
+(23, 5),
+(24, 1),
+(25, 2);
+
+-- ------------------------------
 -- Users
 -- ------------------------------
 INSERT INTO user (username, email, password, profilePicture, dateJoined) VALUES

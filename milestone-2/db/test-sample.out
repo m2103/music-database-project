@@ -1,7 +1,7 @@
 ______________
 R6: View Song Details
-songID	songName	artists	releaseDate	albumName	albumCover	avgRating	reviewCount
-1	Blinding Lights	The Weeknd	2019-11-29	After Hours	https://example.com/afterhours.jpg	5.0	1
+songID	songName	artists	releaseDate	spotifyURL	albumName	albumCover	avgRating	reviewCount
+1	Blinding Lights	The Weeknd	2019-11-29	https://open.spotify.com/track/blindinglights	After Hours	https://example.com/afterhours.jpg	5.0	1
 ______________
 R7: Submitting a review
 ______________

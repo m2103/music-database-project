@@ -6,6 +6,7 @@ SELECT
   al.albumCover,
   a.artists,
   s.releaseDate,
+  s.spotifyURL,
   sr.avgRating,
   sr.reviewCount
 FROM song s

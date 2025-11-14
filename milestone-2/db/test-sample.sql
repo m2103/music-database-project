@@ -6,6 +6,7 @@ SELECT
     s.songName,
     s.artists,
     s.releaseDate,
+    s.spotifyURL,
     s.albumName,
     s.albumCover,
     s.avgRating,

@@ -2,6 +2,10 @@ import pandas as pd
 from faker import Faker
 import random
 import datetime
+import os
+
+DATA_DIR = "../data"
+os.makedirs(DATA_DIR, exist_ok=True)
 
 fake = Faker()
 Faker.seed(43)
@@ -41,7 +45,7 @@ for _ in range(NUM_USERS):
 
 df_user = pd.DataFrame(user_data)
 df_user = df_user.sort_values(by='dateJoined').reset_index(drop=True)
-df_user.to_csv('user.csv', index=False)
+df_user.to_csv(f'{DATA_DIR}/user.csv', index=False)
 print(f"Successfully created user.csv with {len(df_user)} entries.")
 
 print("Generating review data")
@@ -104,6 +108,6 @@ while len(review_data) < NUM_REVIEWS:
         })
 
 df_review = pd.DataFrame(review_data)
-df_review.to_csv('review.csv', index=False)
+df_review.to_csv(f'{DATA_DIR}/review.csv', index=False)
 print(f"Successfully created review.csv with {len(df_review)} entries.")
 print("Generation complete.")

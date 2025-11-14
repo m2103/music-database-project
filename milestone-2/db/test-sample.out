@@ -1,34 +1,18 @@
 ______________
-R6: Highest Average Rating in Past 7 Days
-songID	title	artist_name	avg_rating	ratings_count
-13	Bad Guy	Billie Eilish	5.0000	2
-22	Billie Bossa Nova	Billie Eilish	5.0000	1
-1	Blinding Lights	The Weeknd	5.0000	1
-17	Church	Coldplay	4.5000	2
-3	Heartless	The Weeknd	4.3333	3
-18	Higher Power	Coldplay	5.0000	2
-4	In Your Eyes	The Weeknd	5.0000	2
-8	Physical	Dua Lipa	5.0000	2
-19	Save Your Soul	The Weeknd	4.5000	2
-9	Believer	Imagine Dragons	4.0000	2
-songID	title	artist_name	avg_rating	ratings_count
-13	Bad Guy	Billie Eilish	5.0000	2
-9	Believer	Imagine Dragons	4.0000	2
-22	Billie Bossa Nova	Billie Eilish	5.0000	1
-1	Blinding Lights	The Weeknd	5.0000	1
-20	Break My Heart	Dua Lipa	4.5000	2
-17	Church	Coldplay	4.5000	2
-3	Heartless	The Weeknd	4.3333	3
-18	Higher Power	Coldplay	5.0000	2
-4	In Your Eyes	The Weeknd	5.0000	2
-21	Natural	Imagine Dragons	4.5000	2
+R6: View Song Details
+songID	songName	artists	releaseDate	albumName	albumCover	avgRating	reviewCount
+1	Blinding Lights	The Weeknd	2019-11-29	After Hours	https://example.com/afterhours.jpg	5.0	1
 ______________
-R7: View Song Details
-song_name	artist_name	song_rating	album_name	song_date	song_url	genres
-Orphans	Coldplay	5.0000	Everyday Life	2019-10-24	https://open.spotify.com/track/orphans	Rock, Rock
+R7: Submitting a review
 ______________
-R8: Submitting a review
-______________
-R9: View User Profile
+R8: View User Details
 userName	email	profilePicture	dateJoined
 alice	alice@email.com	https://example.com/alice.jpg	2025-10-01
+______________
+R9: Viewing a Song’s Recent Reviews
+userName	rating	comment	timestamp
+alice	5.0	Amazing song!	2025-10-19 10:00:00
+______________
+R10: Viewing a User’s Recent Reviews
+recentReviews
+[{"rating": 5.0, "songID": 1, "albumID": 1, "artists": "The Weeknd", "comment": "Amazing song!", "reviewID": 1, "songName": "Blinding Lights", "albumName": "After Hours", "timestamp": "2025-10-19"}, {"rating": 4.0, "songID": 9, "albumID": 4, "artists": "Imagine Dragons", "comment": "Catchy chorus!", "reviewID": 8, "songName": "Believer", "albumName": "Evolve", "timestamp": "2025-10-19"}, {"rating": 5.0, "songID": 19, "albumID": 2, "artists": "Dua Lipa", "comment": "Amazing production!", "reviewID": 18, "songName": "Save Your Soul", "albumName": "Dawn FM", "timestamp": "2025-10-18"}, {"rating": 5.0, "songID": 6, "albumID": 3, "artists": "Dua Lipa", "comment": "Incredible!", "reviewID": 26, "songName": "Levitating", "albumName": "Future Nostalgia", "timestamp": "2025-10-08"}, {"rating": 5.0, "songID": 16, "albumID": 6, "artists": "Billie Eilish", "comment": "Top track!", "reviewID": 36, "songName": "Everyday Life", "albumName": "Everyday Life", "timestamp": "2025-09-28"}]

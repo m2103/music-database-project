@@ -1,0 +1,24 @@
+______________
+R6: View Song Details
+songID	songName	artists	releaseDate	spotifyURL	albumName	albumCover	avgRating	reviewCount
+1	Sherry	Frankie Valli & The Four Seasons	2003-01-14	spotify:track:0NpvdCO506uO58D4AbKzki	The Very Best of Frankie Valli & The 4 Seasons	https://i.scdn.co/image/ab67616d0000b273b96c21e15c091eb98a6c88a4	3.7	7
+______________
+R7: Submitting a review
+______________
+R8: View User Details
+userName	email	profilePicture	dateJoined
+daniel31_9056	daniel31_9056@example.com	https://picsum.photos/id/889/200/300	2020-01-01
+______________
+R9: Viewing a Song’s Recent Reviews
+userName	rating	comment	timestamp
+qcampbell_3451	3.0	It's ok	2025-10-12 06:00:19
+christine36_1063	4.0	Good but minor issues	2025-09-03 04:01:49
+erin76_7907	5.0	ON REPEAT!!	2025-08-10 05:51:14
+zholmes_8297	2.0	Not my taste	2025-03-06 06:13:28
+vickilee_4231	2.0	Not my taste	2024-12-12 14:54:33
+brianhernandez_9940	5.0	Instant classic.	2024-06-16 17:21:36
+matthew55_2113	5.0	Instant classic.	2024-01-09 09:29:11
+______________
+R10: Viewing a User’s Recent Reviews
+recentReviews
+[{"rating": 2.0, "songID": 523, "albumID": 520, "artists": "The Chicks", "comment": "Two stars for trying.", "reviewID": 76710, "songName": "Landslide", "albumName": "The Essential The Chicks", "timestamp": "2025-09-30"}, {"rating": 5.0, "songID": 704, "albumID": 694, "artists": "Cosima De Vito", "comment": "ON REPEAT!!", "reviewID": 86456, "songName": "When the War Is Over", "albumName": "When the War Is Over", "timestamp": "2025-07-26"}, {"rating": 3.0, "songID": 1872, "albumID": 1748, "artists": "Eminem", "comment": "Average", "reviewID": 50314, "songName": "Berzerk", "albumName": "The Marshall Mathers LP2 (Deluxe)", "timestamp": "2025-04-24"}, {"rating": 1.0, "songID": 3679, "albumID": 5217, "artists": "Céline Dion", "comment": "Do people actually listen to this?", "reviewID": 35006, "songName": "Because You Loved Me", "albumName": "Falling Into You", "timestamp": "2025-02-10"}, {"rating": 4.0, "songID": 2460, "albumID": 2237, "artists": "Climie Fisher", "comment": "Straight into my playlist", "reviewID": 20431, "songName": "Love Changes (Everything)", "albumName": "Everything", "timestamp": "2025-01-04"}]

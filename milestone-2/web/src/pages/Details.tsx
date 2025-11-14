@@ -20,6 +20,7 @@ type Song = {
   songName: string;
   artists: string;
   releaseDate: string;
+  spotifyURL: string;
   albumName: string;
   albumCover: string;
   avgRating: number;
@@ -88,7 +89,7 @@ export default function Details() {
             />
           </div>
 
-          {/* Text + stats */}
+          {/* Text + stats + listen on spotify */}
           <CardContent className="px-6 py-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             {/* Left: title / artist / album */}
             <div className="space-y-1">
@@ -100,6 +101,17 @@ export default function Details() {
               </CardDescription>
               <p className="text-sm text-muted-foreground">
                 {song.albumName} &#8226; {song.releaseDate.slice(0, 4)}
+              </p>
+
+              <p>
+                <a
+                  href={song.spotifyURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 italic hover:underline"
+                >
+                  Listen on Spotify
+                </a>
               </p>
             </div>
 

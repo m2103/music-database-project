@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 
 import ReviewCard, { type Review } from "@/components/ReviewCard";
 
@@ -20,6 +19,7 @@ type Song = {
   songID: number;
   songName: string;
   artists: string;
+  releaseDate: string;
   albumName: string;
   albumCover: string;
   avgRating: number;
@@ -96,34 +96,28 @@ export default function Details() {
                 {song.songName}
               </CardTitle>
               <CardDescription className="text-base text-muted-foreground">
-                <p>{song.artists}</p>
-                <p className="italic">{song.albumName}</p>
+                {song.artists}
               </CardDescription>
+              <p className="text-sm text-muted-foreground">
+                {song.albumName} &#8226; {song.releaseDate.slice(0, 4)}
+              </p>
             </div>
 
-            {/* Right: rating / reviews / duration */}
-            <div className="flex flex-col items-end gap-2 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Average Rating
-                </span>
-                <div className="inline-flex items-center gap-1 rounded-full bg-black/80 text-white px-3 py-1 text-sm">
-                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="font-semibold">
-                    {song.avgRating?.toFixed
-                      ? song.avgRating.toFixed(1)
-                      : song.avgRating}
-                  </span>
+            {/* Right: rating */}
+            <div className="flex items-center justify-between mb-4 pr-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Star className="w-6 h-6 fill-yellow-500 text-yellow-500" />
+                    <span className="text-3xl font-bold">{
+                      song.avgRating?.toFixed ? song.avgRating.toFixed(1) : song.avgRating
+                    }</span>
+                    <span className="text-muted-foreground">/ 5</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground text-end">
+                    {song.reviewCount.toLocaleString()} ratings
+                  </p>
                 </div>
               </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Reviews
-                </span>
-                <span className="font-medium">{song.reviewCount}</span>
-              </div>
-            </div>
           </CardContent>
         </Card>
 

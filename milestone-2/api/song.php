@@ -14,6 +14,7 @@ $songSql = "
         s.songID,
         s.songName,
         s.artists,
+        s.releaseDate,
         s.albumName,
         s.albumCover,
         s.avgRating,

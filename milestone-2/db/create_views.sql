@@ -5,6 +5,7 @@ SELECT
   al.name AS albumName,
   al.albumCover,
   a.artists,
+  s.releaseDate,
   sr.avgRating,
   sr.reviewCount
 FROM song s

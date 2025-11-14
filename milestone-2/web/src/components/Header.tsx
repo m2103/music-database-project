@@ -37,7 +37,7 @@ export function Header() {
               <Input
                 type="text"
                 placeholder="Search songs, albums, artists, profiles..."
-                className="pl-10 bg-input-background"
+                className="pl-10 bg-secondary w-full"
               />
             </div>
           </div>

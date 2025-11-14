@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"; // <-- import this
 import ProfileCard from "@/components/ProfileCard";
 import ReviewCard from "@/components/ReviewCard";
 import type { Review } from "@/components/ReviewCard";
-
 
 const API = "http://127.0.0.1:8000";
 
@@ -29,9 +29,11 @@ type UserProfile = {
 
 export default function Profile() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const userID = 1; // replace with dynamic logic later
+  const { userID } = useParams<{ userID: string }>(); // <-- get userID from URL
 
   useEffect(() => {
+    if (!userID) return;
+
     fetch(`${API}/profile.php?userID=${userID}`)
       .then((res) => res.json())
       .then(setProfile)
@@ -42,14 +44,14 @@ export default function Profile() {
 
   // Adapter: convert ProfileReview to ReviewCard's Review type
   const reviewCards: Review[] = (Array.isArray(profile.recentReviews)
-  ? profile.recentReviews
-  : []).map((r: ProfileReview) => ({
+    ? profile.recentReviews
+    : []
+  ).map((r: ProfileReview) => ({
     userName: `${r.songName} — ${r.artists}`,
     rating: r.rating,
     comment: r.comment || "",
     timestamp: r.timestamp,
   }));
-
 
   return (
     <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>

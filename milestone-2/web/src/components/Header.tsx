@@ -3,6 +3,9 @@ import { Input } from "./ui/input";
 import { Link } from "react-router-dom";
 
 export function Header() {
+  // Replace this with your actual logged-in user ID logic
+  const currentUserID = 1;
+
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -23,7 +26,7 @@ export function Header() {
             </Link>
 
             <Link
-              to="/profile/1" // Replace with dynamic userID when logged in
+              to={`/profile/${currentUserID}`}
               className="hover:text-muted-foreground transition-colors flex items-center gap-2"
             >
               <User className="w-5 h-5" />

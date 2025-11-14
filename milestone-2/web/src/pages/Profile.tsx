@@ -41,13 +41,15 @@ export default function Profile() {
   if (!profile) return <main style={{ padding: 24 }}>Loading...</main>;
 
   // Adapter: convert ProfileReview to ReviewCard's Review type
-  const reviewCards: Review[] =
-    profile.recentReviews?.map((r) => ({
-      userName: `${r.songName} — ${r.artists}`, // show song + artists
-      rating: r.rating,
-      comment: r.comment || "",
-      timestamp: r.timestamp,
-    })) || [];
+  const reviewCards: Review[] = (Array.isArray(profile.recentReviews)
+  ? profile.recentReviews
+  : []).map((r: ProfileReview) => ({
+    userName: `${r.songName} — ${r.artists}`,
+    rating: r.rating,
+    comment: r.comment || "",
+    timestamp: r.timestamp,
+  }));
+
 
   return (
     <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>

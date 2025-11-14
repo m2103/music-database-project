@@ -58,9 +58,9 @@ $stmt->execute();
 
 $result = $stmt->get_result()->fetch_assoc();
 
-if (!$result) {
-    echo json_encode(['error' => 'User not found']);
-    exit;
+// Decode recentReviews JSON string into array
+if ($result && isset($result['recentReviews'])) {
+    $result['recentReviews'] = json_decode($result['recentReviews'], true);
 }
 
 echo json_encode($result);

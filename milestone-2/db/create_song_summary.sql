@@ -1,6 +1,6 @@
 CREATE TABLE song_review_summary (
   songID INT PRIMARY KEY,
-  avgRating DECIMAL(3,2) NOT NULL DEFAULT 0.00,
+  avgRating DECIMAL(3,1) NOT NULL DEFAULT 0.0,
   reviewCount INT NOT NULL DEFAULT 0,
   FOREIGN KEY (songID) REFERENCES song(songID) ON DELETE CASCADE
 );

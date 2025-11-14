@@ -1,10 +1,10 @@
 CREATE TABLE artist (
-    artistID INT AUTO_INCREMENT PRIMARY KEY,
+    artistID INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE album (
-    albumID INT AUTO_INCREMENT PRIMARY KEY,
+    albumID INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     releaseDate DATE,
     albumCover VARCHAR(255) -- URL
@@ -19,7 +19,7 @@ CREATE TABLE album_artist (
 );
 
 CREATE TABLE song (
-    songID INT AUTO_INCREMENT PRIMARY KEY,
+    songID INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     albumID INT NOT NULL,
     trackNumber INT,

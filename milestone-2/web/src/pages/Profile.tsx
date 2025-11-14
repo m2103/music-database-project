@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ProfileCard from "@/components/ProfileCard";
-import ReviewCard, { Review } from "@/components/ReviewCard";
+import ReviewCard from "@/components/ReviewCard";
+import type { Review } from "@/components/ReviewCard";
+
 
 const API = "http://127.0.0.1:8000";
 

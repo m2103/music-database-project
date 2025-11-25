@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import Home from './pages/Home';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
+import Search from './pages/Search';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/details/:songID" element={<Details />} />
           <Route path="/profile/:userID" element={<Profile />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         <Toaster richColors/>
       </div>

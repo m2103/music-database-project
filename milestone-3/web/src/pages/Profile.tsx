@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"; // <-- import this
 import ProfileCard from "@/components/ProfileCard";
 import ReviewCard from "@/components/ReviewCard";
 import type { Review } from "@/components/ReviewCard";
+import { Separator } from "@/components/ui/separator";
 
 const API = "http://127.0.0.1:8000";
 
@@ -17,6 +18,7 @@ type ProfileReview = {
   albumName: string;
   albumCover: string;
   artists: string;
+  profilePicture: string;
 };
 
 type UserProfile = {
@@ -51,6 +53,7 @@ export default function Profile() {
     rating: r.rating,
     comment: r.comment || "",
     timestamp: r.timestamp,
+    profilePicture: r.profilePicture,
   }));
 
   return (
@@ -65,7 +68,14 @@ export default function Profile() {
 
       {/* Recent Reviews */}
       <section>
-        <h2 className="text-2xl font-semibold italic mb-4">Recent Reviews</h2>
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="text-2xl font-semibold italic">Recent Reviews</h2>
+          <span className="text-xs text-muted-foreground">
+            {reviewCards.length} review{reviewCards.length === 1 ? "" : "s"}
+          </span>
+        </div>
+        <Separator className="my-4" />
+
         {reviewCards.length === 0 ? (
           <p className="text-muted-foreground">No reviews yet.</p>
         ) : (

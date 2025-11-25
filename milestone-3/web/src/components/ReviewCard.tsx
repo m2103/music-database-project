@@ -1,12 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Star, User } from "lucide-react";
+import { Star} from "lucide-react";
 
 export type Review = {
   userName: string;
   rating: number;
   comment: string;
   timestamp: string;
+  profilePicture: string;
 };
 
 export default function ReviewCard({ review }: { review: Review }) {
@@ -23,7 +24,7 @@ export default function ReviewCard({ review }: { review: Review }) {
         <div className="flex justify-between gap-3">
           <div className="flex gap-3">
             <Avatar className="w-9 h-9">
-              <AvatarImage src={""} alt={review.userName} />
+              <AvatarImage src={review.profilePicture} alt={review.userName} />
               <AvatarFallback className="text-xs">{initials}</AvatarFallback>
             </Avatar>
             <div className="space-y-0.5">

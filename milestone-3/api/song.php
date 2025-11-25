@@ -40,7 +40,8 @@ $reviewsSql = "
         u.username AS userName,
         r.rating,
         r.comment,
-        r.timestamp
+        r.timestamp,
+        u.profilePicture
     FROM review r
     JOIN user u ON u.userID = r.userID
     WHERE r.songID = ?

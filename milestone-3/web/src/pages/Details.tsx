@@ -271,7 +271,7 @@ export default function Details() {
       {/* Reviews list */}
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-xl font-semibold">Reviews</h2>
+          <h2 className="text-2xl font-semibold italic">Recent Reviews</h2>
           <span className="text-xs text-muted-foreground">
             {reviews.length} review{reviews.length === 1 ? "" : "s"}
           </span>

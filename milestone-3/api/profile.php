@@ -31,6 +31,7 @@ SELECT
                 'albumID', a.albumID,
                 'albumName', a.name,
                 'albumCover', a.albumCover,
+                'profilePicture', u.profilePicture,
 
                 'artists', (
                     SELECT GROUP_CONCAT(ar.name ORDER BY ar.name SEPARATOR ', ')

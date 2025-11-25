@@ -28,6 +28,7 @@ type UnpopularReview = ProfileReview & {
 };
 
 type UserProfile = {
+  name: string;
   userName: string;
   email: string;
   profilePicture: string | null;
@@ -102,6 +103,7 @@ export default function Profile() {
     >
       {/* Profile top segment */}
       <ProfileCard
+        name={profile.name}
         userName={profile.userName}
         email={profile.email}
         profilePicture={profile.profilePicture}

@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import ReviewCard, { type Review } from "@/components/ReviewCard";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 const API = "http://127.0.0.1:8000";
 
@@ -36,14 +39,39 @@ export default function Details() {
   const { songID } = useParams<{ songID: string }>();
   const [data, setData] = useState<SongResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function fetchSongAndReviews(id: string, withLoading = false) {
+    try {
+      if (withLoading) setLoading(true);
+      const r = await fetch(`${API}/song.php?songID=${id}`);
+      const json = await r.json();
+      setData(json);
+    } finally {
+      if (withLoading) setLoading(false);
+    }
+  }
 
   useEffect(() => {
     if (!songID) return;
     setLoading(true);
-    fetch(`${API}/song.php?songID=${songID}`)
+    fetchSongAndReviews(songID, true);
+  }, [songID]);
+
+  useEffect(() => {
+    if (!songID) return;
+    fetch(`${API}/review.php?songID=${songID}&userID=1`)
       .then((r) => r.json())
-      .then((json) => setData(json))
-      .finally(() => setLoading(false));
+      .then((json) => {
+        if (json.exists) {
+          setRating(json.rating);
+          setComment(json.comment);
+        }
+      });
   }, [songID]);
 
   if (loading) {
@@ -63,6 +91,38 @@ export default function Details() {
   }
 
   const { song, reviews } = data;
+
+  async function handleSubmitReview(partial: { rating?: number | null; comment?: string | null }) {
+    try {
+      setSubmitting(true);
+      const res = await fetch(`${API}/review.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          songID: song.songID,
+          userID: 1,
+          rating: partial.rating ?? undefined,
+          comment: partial.comment ?? undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit review");
+      }
+
+      toast.success("Review submitted.");
+      setShowReviewForm(false);
+      setComment(partial.comment ?? comment);
+      setRating(partial.rating ?? rating);
+      fetchSongAndReviews(song.songID.toString());
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      toast.error("Error submitting review. Please try again.");
+    } finally {
+      await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
+      setSubmitting(false);
+    }
+  }
 
   return (
     <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-10">
@@ -135,19 +195,77 @@ export default function Details() {
 
         {/* Quick actions row */}
         <div className="flex flex-wrap items-center gap-3 justify-between">
+          {/* Stars (rating field) */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Rate this song</span>
             <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-muted-foreground" />
-              ))}
+              {Array.from({ length: 5 }).map((_, i) => {
+                const index = i + 1;
+                const active =
+                  hovered !== null
+                    ? index <= hovered
+                    : rating !== null && index <= rating;
+
+                return (
+                  <Star
+                    key={index}
+                    onMouseEnter={() => setHovered(index)}
+                    onMouseLeave={() => setHovered(null)}
+                    onClick={() => {
+                      setRating(index);
+                      handleSubmitReview({ rating: index });
+                    }}
+                    className={`w-5 h-5 cursor-pointer transition-colors ${
+                      active ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground"
+                    }`}
+                  />
+                );
+              })}
             </div>
           </div>
 
-          <Button size="sm" variant="secondary">
-            Write a Review
+          <Button
+            onClick={() => setShowReviewForm((prev) => !prev)}
+          >
+            {rating ? "Edit Your Review" : "Write a Review"}
           </Button>
         </div>
+
+        {showReviewForm && (
+          <Card className="rounded-2xl border">
+            <CardContent className="pt-4 space-y-4">
+              <Textarea
+                placeholder="Share your thoughts about this song..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                className="min-h-[140px] text-sm"
+              />
+
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleSubmitReview({ rating, comment })}
+                  disabled={!rating || submitting}
+                >
+                  {submitting ? <Spinner className="w-4 h-4" /> : null}
+                  Submit Review
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setShowReviewForm(false);
+                    setComment("");
+                    setRating(null);
+                    setHovered(null);
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </section>
 
       {/* Reviews list */}

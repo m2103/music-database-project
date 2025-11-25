@@ -12,6 +12,7 @@ $userID = intval($_GET['userID']);
 $sql = "
 SELECT 
     u.username AS userName,
+    u.name,
     u.email,
     u.profilePicture,
     DATE_FORMAT(u.dateJoined, '%Y-%m-%d') AS dateJoined,

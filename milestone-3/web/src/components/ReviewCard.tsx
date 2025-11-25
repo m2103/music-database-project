@@ -3,7 +3,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Star} from "lucide-react";
 
 export type Review = {
-  userName: string;
+  title: string;
+  subtitle: string;
   rating: number;
   comment: string;
   timestamp: string;
@@ -12,7 +13,7 @@ export type Review = {
 
 export default function ReviewCard({ review }: { review: Review }) {
   const initials =
-    review.userName
+    review.title
       .split(" ")
       .map((part) => part[0])
       .join("")
@@ -24,13 +25,14 @@ export default function ReviewCard({ review }: { review: Review }) {
         <div className="flex justify-between gap-3">
           <div className="flex gap-3">
             <Avatar className="w-9 h-9">
-              <AvatarImage src={review.profilePicture} alt={review.userName} />
+              <AvatarImage src={review.profilePicture} alt={review.title} />
               <AvatarFallback className="text-xs">{initials}</AvatarFallback>
             </Avatar>
             <div className="space-y-0.5">
               <p className="text-sm font-medium flex items-center gap-1">
-                {review.userName}
+                {review.title}
               </p>
+              <p className="text-xs text-muted-foreground mb-3">{review.subtitle}</p>
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1 text-sm">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -49,7 +51,7 @@ export default function ReviewCard({ review }: { review: Review }) {
                     {new Date(review.timestamp).toISOString().slice(0, 10)}
                 </p>
               </div>
-              <p className="pt-3 text-sm leading-relaxed text-foreground">
+              <p className="pt-2 text-sm leading-relaxed text-foreground">
                 {review.comment}
                 </p>
             </div>

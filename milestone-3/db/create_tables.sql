@@ -1,11 +1,13 @@
 CREATE TABLE artist (
     artistID INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    FULLTEXT(name)
 );
 
 CREATE TABLE album (
     albumID INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    FULLTEXT(name),
     releaseDate DATE,
     albumCover VARCHAR(255) -- URL
 );
@@ -21,6 +23,7 @@ CREATE TABLE album_artist (
 CREATE TABLE song (
     songID INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    FULLTEXT(name),
     albumID INT NOT NULL,
     trackNumber INT,
     releaseDate DATE,
@@ -38,7 +41,9 @@ CREATE TABLE song_artist (
 
 CREATE TABLE user (
     userID INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    FULLTEXT(username, name),
     email VARCHAR(255),
     password VARCHAR(255) NOT NULL, -- hashed
     profilePicture VARCHAR(255), -- URL

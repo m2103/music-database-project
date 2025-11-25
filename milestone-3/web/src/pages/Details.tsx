@@ -50,7 +50,20 @@ export default function Details() {
       if (withLoading) setLoading(true);
       const r = await fetch(`${API}/song.php?songID=${id}`);
       const json = await r.json();
-      setData(json);
+      setData({
+        song: json.song,
+        // map the reviews to match Review type
+        reviews: Array.isArray(json.reviews)
+          ? json.reviews.map((rev: any) => ({
+              title: rev.name,
+              subtitle: rev.userName,
+              rating: rev.rating,
+              comment: rev.comment || "",
+              timestamp: rev.timestamp,
+              profilePicture: rev.profilePicture,
+            }))
+          : [],
+      });
     } finally {
       if (withLoading) setLoading(false);
     }
@@ -92,7 +105,10 @@ export default function Details() {
 
   const { song, reviews } = data;
 
-  async function handleSubmitReview(partial: { rating?: number | null; comment?: string | null }) {
+  async function handleSubmitReview(partial: {
+    rating?: number | null;
+    comment?: string | null;
+  }) {
     try {
       setSubmitting(true);
       const res = await fetch(`${API}/review.php`, {
@@ -177,19 +193,21 @@ export default function Details() {
 
             {/* Right: rating */}
             <div className="flex items-center justify-between mb-4 pr-4">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <Star className="w-6 h-6 fill-yellow-500 text-yellow-500" />
-                    <span className="text-3xl font-bold">{
-                      song.avgRating?.toFixed ? song.avgRating.toFixed(1) : song.avgRating
-                    }</span>
-                    <span className="text-muted-foreground">/ 5</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground text-end">
-                    {song.reviewCount.toLocaleString()} ratings
-                  </p>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Star className="w-6 h-6 fill-yellow-500 text-yellow-500" />
+                  <span className="text-3xl font-bold">
+                    {song.avgRating?.toFixed
+                      ? song.avgRating.toFixed(1)
+                      : song.avgRating}
+                  </span>
+                  <span className="text-muted-foreground">/ 5</span>
                 </div>
+                <p className="text-sm text-muted-foreground text-end">
+                  {song.reviewCount.toLocaleString()} ratings
+                </p>
               </div>
+            </div>
           </CardContent>
         </Card>
 
@@ -216,7 +234,9 @@ export default function Details() {
                       handleSubmitReview({ rating: index });
                     }}
                     className={`w-5 h-5 cursor-pointer transition-colors ${
-                      active ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground"
+                      active
+                        ? "text-yellow-500 fill-yellow-500"
+                        : "text-muted-foreground"
                     }`}
                   />
                 );
@@ -224,9 +244,7 @@ export default function Details() {
             </div>
           </div>
 
-          <Button
-            onClick={() => setShowReviewForm((prev) => !prev)}
-          >
+          <Button onClick={() => setShowReviewForm((prev) => !prev)}>
             {rating ? "Edit Your Review" : "Write a Review"}
           </Button>
         </div>

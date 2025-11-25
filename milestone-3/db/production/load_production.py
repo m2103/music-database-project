@@ -81,8 +81,8 @@ def load_user():
         next(reader)
         for row in reader:
             cursor.execute(
-                "INSERT INTO user (username, email, password, profilePicture, dateJoined) VALUES (%s, %s, %s, %s, %s)",
-                (row[0], row[1], row[2], row[3], row[4])
+                "INSERT INTO user (username, name, email, password, profilePicture, dateJoined) VALUES (%s, %s, %s, %s, %s, %s)",
+                (row[0], row[1], row[2], row[3], row[4], row[5])
             )
     conn.commit()
 

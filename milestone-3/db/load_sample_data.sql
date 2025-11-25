@@ -1,9 +1,3 @@
--- =====================================================
--- load_sample_data_v2.sql
--- Sample data for music rating application (60+ entries)
--- Updated for new schema
--- =====================================================
-
 -- ------------------------------
 -- Artists
 -- ------------------------------
@@ -79,17 +73,17 @@ INSERT INTO song_artist (songID, artistID) VALUES
 -- ------------------------------
 -- Users
 -- ------------------------------
-INSERT INTO user (username, email, password, profilePicture, dateJoined) VALUES
-('alice','alice@email.com','hashedpwd1','https://example.com/alice.jpg','2025-10-01 10:00:00'),
-('bob','bob@email.com','hashedpwd2','https://example.com/bob.jpg','2025-10-10 11:00:00'),
-('charlie','charlie@email.com','hashedpwd3','https://example.com/charlie.jpg','2025-10-12 12:00:00'),
-('dave','dave@email.com','hashedpwd4','https://example.com/dave.jpg','2025-10-14 14:00:00'),
-('eve','eve@email.com','hashedpwd5','https://example.com/eve.jpg','2025-10-18 09:00:00'),
-('frank','frank@email.com','hashedpwd6','https://example.com/frank.jpg','2025-09-28 15:00:00'),
-('grace','grace@email.com','hashedpwd7','https://example.com/grace.jpg','2025-10-02 12:00:00'),
-('hank','hank@email.com','hashedpwd8','https://example.com/hank.jpg','2025-10-05 17:00:00'),
-('irene','irene@email.com','hashedpwd9','https://example.com/irene.jpg','2025-10-07 08:00:00'),
-('jack','jack@email.com','hashedpwd10','https://example.com/jack.jpg','2025-10-09 20:00:00');
+INSERT INTO user (username, name, email, password, profilePicture, dateJoined) VALUES
+('alice', 'Alice Smith', 'alice@email.com','hashedpwd1','https://example.com/alice.jpg','2025-10-01 10:00:00'),
+('bob','Bob Lee','bob@email.com','hashedpwd2','https://example.com/bob.jpg','2025-10-10 11:00:00'),
+('charlie','Charlie Brown','charlie@email.com','hashedpwd3','https://example.com/charlie.jpg','2025-10-12 12:00:00'),
+('dave','Dave Thompson','dave@email.com','hashedpwd4','https://example.com/dave.jpg','2025-10-14 14:00:00'),
+('eve','Eve Johnson','eve@email.com','hashedpwd5','https://example.com/eve.jpg','2025-10-18 09:00:00'),
+('frank','Frank Wilson','frank@email.com','hashedpwd6','https://example.com/frank.jpg','2025-09-28 15:00:00'),
+('grace', 'Grace Miller','grace@email.com','hashedpwd7','https://example.com/grace.jpg','2025-10-02 12:00:00'),
+('hank', 'Hank Davis','hank@email.com','hashedpwd8','https://example.com/hank.jpg','2025-10-05 17:00:00'),
+('irene', 'Irene Martinez','irene@email.com','hashedpwd9','https://example.com/irene.jpg','2025-10-07 08:00:00'),
+('jack','Jack Wilson','jack@email.com','hashedpwd10','https://example.com/jack.jpg','2025-10-09 20:00:00');
 
 -- ------------------------------
 -- Reviews

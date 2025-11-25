@@ -38,6 +38,7 @@ if (!$song) {
 $reviewsSql = "
     SELECT 
         u.username AS userName,
+        u.name,
         r.rating,
         r.comment,
         r.timestamp,

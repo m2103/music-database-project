@@ -45,11 +45,11 @@ export default function Profile() {
   if (!profile) return <main style={{ padding: 24 }}>Loading...</main>;
 
   // Adapter: convert ProfileReview to ReviewCard's Review type
-  const reviewCards: Review[] = (Array.isArray(profile.recentReviews)
-    ? profile.recentReviews
-    : []
+  const reviewCards: Review[] = (
+    Array.isArray(profile.recentReviews) ? profile.recentReviews : []
   ).map((r: ProfileReview) => ({
-    userName: `${r.songName} — ${r.artists}`,
+    title: r.songName,
+    subtitle: r.artists,
     rating: r.rating,
     comment: r.comment || "",
     timestamp: r.timestamp,
@@ -57,7 +57,16 @@ export default function Profile() {
   }));
 
   return (
-    <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>
+    <main
+      style={{
+        padding: 24,
+        maxWidth: 900,
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: 24,
+      }}
+    >
       {/* Profile top segment */}
       <ProfileCard
         userName={profile.userName}

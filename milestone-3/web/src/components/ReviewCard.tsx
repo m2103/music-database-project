@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Star} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Star } from "lucide-react";
 
 export type Review = {
   title: string;
@@ -9,6 +10,11 @@ export type Review = {
   comment: string;
   timestamp: string;
   profilePicture: string;
+  meta?: { label: string; value: string }[];
+  badge?: {
+    text: string;
+    tone?: "positive" | "negative" | "neutral";
+  };
 };
 
 export default function ReviewCard({ review }: { review: Review }) {
@@ -29,9 +35,24 @@ export default function ReviewCard({ review }: { review: Review }) {
               <AvatarFallback className="text-xs">{initials}</AvatarFallback>
             </Avatar>
             <div className="space-y-0.5">
-              <p className="text-sm font-medium flex items-center gap-1">
-                {review.title}
-              </p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-sm font-medium flex items-center gap-1">
+                  {review.title}
+                </p>
+                {review.badge && (
+                  <Badge
+                    variant={
+                      review.badge.tone === "negative"
+                        ? "destructive"
+                        : review.badge.tone === "positive"
+                        ? "default"
+                        : "secondary"
+                    }
+                  >
+                    {review.badge.text}
+                  </Badge>
+                )}
+              </div>
               <p className="text-xs text-muted-foreground mb-3">{review.subtitle}</p>
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1 text-sm">
@@ -51,6 +72,16 @@ export default function ReviewCard({ review }: { review: Review }) {
                     {new Date(review.timestamp).toISOString().slice(0, 10)}
                 </p>
               </div>
+              {review.meta && review.meta.length > 0 && (
+                <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                  {review.meta.map((item, idx) => (
+                    <span key={`${item.label}-${idx}`}>
+                      <span className="font-semibold text-foreground">{item.label}:</span>{" "}
+                      {item.value}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p className="pt-2 text-sm leading-relaxed text-foreground">
                 {review.comment}
                 </p>

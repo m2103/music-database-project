@@ -51,39 +51,48 @@ export function Header() {
           )}
         </nav>
 
-        {/* Search */}
-        <div className="flex-1 max-w-2xl relative">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-            }}
-          >
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-
-            <Input
-              type="text"
-              placeholder="Search songs, albums, artists..."
-              className="pl-10 bg-secondary w-full"
-              value={searchQuery}
-              onChange={(e) => {
-                const next = e.target.value;
-                setSearchQuery(next);
-                if (!next.trim()) navigate("/");
-                else navigate(`/search?q=${encodeURIComponent(next.trim())}`);
+          {/* Search */}
+          <div className="flex-1 max-w-2xl">
+            <form
+              className="relative"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const trimmedQuery = searchQuery.trim();
+                if (trimmedQuery) {
+                  navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+                } else {
+                  clearSearch();
+                }
               }}
-            />
-
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={clearSearch}
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-              >
-                <X className="w-4 h-4 text-muted-foreground" />
-              </button>
-            )}
-          </form>
+            >
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search songs, albums, artists..."
+                className="pl-10 bg-secondary w-full"
+                value={searchQuery}
+                onChange={(e) => {
+                  const next = e.target.value;
+                  setSearchQuery(next);
+                  const trimmedQuery = next.trim();
+                  if (!trimmedQuery) {
+                    navigate("/");
+                  } else {
+                    navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+                  }
+                }}
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground"
+                  onClick={clearSearch}
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </header>

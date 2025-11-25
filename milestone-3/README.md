@@ -33,7 +33,7 @@ python3 db/production/generate_user.py
 ```
 to generate users (`db/data/user.csv`) and
 ```
-python3 db/production/generate_reviews.py
+python3 db/production/generate_review.py
 ```
 to generate reviews (`db/data/review.csv`).
 

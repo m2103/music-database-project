@@ -18,11 +18,8 @@ export default function Home() {
   const k = 1;
 
   useEffect(() => {
-    // TO USE FOR MILESTONE 3
-    // fetch(`${API}/homepage.php?mode=avg&k=${k}`).then(r=>r.json()).then(setTopAvg);
-    // fetch(`${API}/homepage.php?mode=count&k=${k}`).then(r=>r.json()).then(setMostRated);
-    fetch(`${API}/homepage.php`).then(r=>r.json()).then(setTopAvg);
-    fetch(`${API}/homepage.php`).then(r=>r.json()).then(setMostRated);
+    fetch(`${API}/homepage.php?mode=avg&k=${k}`).then(r=>r.json()).then(setTopAvg);
+    fetch(`${API}/homepage.php?mode=count&k=${k}`).then(r=>r.json()).then(setMostRated);
   }, []);
 
   return (

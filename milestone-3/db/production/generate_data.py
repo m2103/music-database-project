@@ -14,7 +14,7 @@ random.seed(43)
 NUM_REVIEWS = 100000
 
 REVIEW_START_DATE = datetime.datetime(2020, 6, 1)
-REVIEW_END_DATE = datetime.datetime(2025, 11, 1)
+REVIEW_END_DATE = datetime.datetime.today()
 
 def random_date(start, end):
     delta = end - start

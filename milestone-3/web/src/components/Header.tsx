@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 
 export function Header() {
-  const { userID, logout } = useAuth(); // include logout
+  const { userID, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -18,38 +18,39 @@ export function Header() {
 
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex items-center gap-6">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <Music className="w-8 h-8" />
-          <span className="font-medium">SoundBox</span>
-        </Link>
-
-        {/* Navigation */}
-        <nav className="flex items-center gap-6">
-          <Link to="/" className="hover:text-muted-foreground">
-            Home
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center gap-6">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2">
+            <Music className="w-8 h-8" />
+            <span className="font-medium">SoundBox</span>
           </Link>
 
-          <Link
-            to={profileLink}
-            className="hover:text-muted-foreground flex items-center gap-2"
-          >
-            <User className="w-5 h-5" />
-            {userID ? "Profile" : "Login"}
-          </Link>
+          {/* Navigation */}
+          <nav className="flex items-center gap-6">
+            <Link to="/" className="hover:text-muted-foreground">
+              Home
+            </Link>
 
-          {/* Show logout button if logged in */}
-          {userID && (
-            <button
-              onClick={logout}
-              className="flex items-center gap-1 hover:text-red-500 transition-colors"
+            <Link
+              to={profileLink}
+              className="hover:text-muted-foreground flex items-center gap-2"
             >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </button>
-          )}
-        </nav>
+              <User className="w-5 h-5" />
+              {userID ? "Profile" : "Login"}
+            </Link>
+
+            {/* Show logout button if logged in */}
+            {userID && (
+              <button
+                onClick={logout}
+                className="flex items-center gap-1 hover:text-red-500 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            )}
+          </nav>
 
           {/* Search */}
           <div className="flex-1 max-w-2xl">

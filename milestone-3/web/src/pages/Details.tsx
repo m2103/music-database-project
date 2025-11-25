@@ -42,6 +42,8 @@ export default function Details() {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState<number | null>(null);
+  const [originalComment, setOriginalComment] = useState("");
+  const [originalRating, setOriginalRating] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -83,6 +85,8 @@ export default function Details() {
         if (json.exists) {
           setRating(json.rating);
           setComment(json.comment);
+          setOriginalRating(json.rating);
+          setOriginalComment(json.comment);
         }
       });
   }, [songID]);
@@ -130,6 +134,8 @@ export default function Details() {
       setShowReviewForm(false);
       setComment(partial.comment ?? comment);
       setRating(partial.rating ?? rating);
+      setOriginalComment(partial.comment ?? comment);
+      setOriginalRating(partial.rating ?? rating);
       fetchSongAndReviews(song.songID.toString());
     } catch (error) {
       console.error("Error submitting review:", error);
@@ -215,7 +221,7 @@ export default function Details() {
         <div className="flex flex-wrap items-center gap-3 justify-between">
           {/* Stars (rating field) */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Rate this song</span>
+            <span>{rating ? `Your rating:` : "Rate this song"}</span>
             <div className="flex items-center gap-1">
               {Array.from({ length: 5 }).map((_, i) => {
                 const index = i + 1;
@@ -231,7 +237,7 @@ export default function Details() {
                     onMouseLeave={() => setHovered(null)}
                     onClick={() => {
                       setRating(index);
-                      handleSubmitReview({ rating: index });
+                      setShowReviewForm(true);
                     }}
                     className={`w-5 h-5 cursor-pointer transition-colors ${
                       active
@@ -243,10 +249,6 @@ export default function Details() {
               })}
             </div>
           </div>
-
-          <Button onClick={() => setShowReviewForm((prev) => !prev)}>
-            {rating ? "Edit Your Review" : "Write a Review"}
-          </Button>
         </div>
 
         {showReviewForm && (
@@ -273,8 +275,8 @@ export default function Details() {
                   variant="outline"
                   onClick={() => {
                     setShowReviewForm(false);
-                    setComment("");
-                    setRating(null);
+                    setComment(originalComment);
+                    setRating(originalRating);
                     setHovered(null);
                   }}
                 >

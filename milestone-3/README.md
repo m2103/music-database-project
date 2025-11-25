@@ -25,19 +25,17 @@ db/data/album.csv
 db/data/album_artist.csv
 db/data/song.csv
 db/data/song_artist.csv
-db/data/user.csv
-db/data/review.csv
 ```
 
 Then run
 ```
-python3 db/production/generate_data.py
+python3 db/production/generate_user.py
 ```
-to generatre users and reviews. It outputs:
+to generate users (`db/data/user.csv`) and
 ```
-db/data/user.csv
-db/data/review.csv
+python3 db/production/generate_reviews.py
 ```
+to generate reviews (`db/data/review.csv`).
 
 Note that these scripts require the `pandas` and `Faker` libraries.
 

@@ -1,0 +1,18 @@
+______________
+R6: View Song Details
+songID	songName	artists	releaseDate	spotifyURL	albumName	albumCover	avgRating	reviewCount
+1	Blinding Lights	The Weeknd	2019-11-29	https://open.spotify.com/track/blindinglights	After Hours	https://example.com/afterhours.jpg	5.0	1
+______________
+R7: Submitting a review
+______________
+R8: View User Details
+userName	email	profilePicture	dateJoined
+alice	alice@email.com	https://example.com/alice.jpg	2025-10-01
+______________
+R9: Viewing a Song’s Recent Reviews
+userName	rating	comment	timestamp
+alice	5.0	Amazing song!	2025-10-19 10:00:00
+______________
+R10: Viewing a User’s Recent Reviews
+recentReviews
+[{"rating": 5.0, "songID": 1, "albumID": 1, "artists": "The Weeknd", "comment": "Amazing song!", "reviewID": 1, "songName": "Blinding Lights", "albumName": "After Hours", "timestamp": "2025-10-19"}, {"rating": 4.0, "songID": 9, "albumID": 4, "artists": "Imagine Dragons", "comment": "Catchy chorus!", "reviewID": 8, "songName": "Believer", "albumName": "Evolve", "timestamp": "2025-10-19"}, {"rating": 5.0, "songID": 19, "albumID": 2, "artists": "Dua Lipa", "comment": "Amazing production!", "reviewID": 18, "songName": "Save Your Soul", "albumName": "Dawn FM", "timestamp": "2025-10-18"}, {"rating": 5.0, "songID": 6, "albumID": 3, "artists": "Dua Lipa", "comment": "Incredible!", "reviewID": 26, "songName": "Levitating", "albumName": "Future Nostalgia", "timestamp": "2025-10-08"}, {"rating": 5.0, "songID": 16, "albumID": 6, "artists": "Billie Eilish", "comment": "Top track!", "reviewID": 36, "songName": "Everyday Life", "albumName": "Everyday Life", "timestamp": "2025-09-28"}]

@@ -100,7 +100,7 @@ export default function Details() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           songID: song.songID,
-          userID: 1,
+          userID: 1, // TODO: replace with actual user ID
           rating: partial.rating ?? undefined,
           comment: partial.comment ?? undefined,
         }),

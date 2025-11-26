@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Star, ArrowLeft } from "lucide-react";
 
 import {
@@ -15,6 +15,7 @@ import ReviewCard, { type Review } from "@/components/ReviewCard";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { useAuth } from "@/context/AuthContext";
 
 const API = "http://127.0.0.1:8000";
 
@@ -37,13 +38,19 @@ type SongResponse = {
 
 export default function Details() {
   const { songID } = useParams<{ songID: string }>();
+  const { userID } = useAuth();
+  const navigate = useNavigate();
+
   const [data, setData] = useState<SongResponse | null>(null);
   const [loading, setLoading] = useState(true);
+
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState<number | null>(null);
+
   const [originalComment, setOriginalComment] = useState("");
   const [originalRating, setOriginalRating] = useState<number | null>(null);
+
   const [hovered, setHovered] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -52,9 +59,9 @@ export default function Details() {
       if (withLoading) setLoading(true);
       const r = await fetch(`${API}/song.php?songID=${id}`);
       const json = await r.json();
+
       setData({
         song: json.song,
-        // map the reviews to match Review type
         reviews: Array.isArray(json.reviews)
           ? json.reviews.map((rev: any) => ({
               title: rev.name,
@@ -73,23 +80,25 @@ export default function Details() {
 
   useEffect(() => {
     if (!songID) return;
-    setLoading(true);
     fetchSongAndReviews(songID, true);
   }, [songID]);
 
+  // Fetch existing user review
   useEffect(() => {
-    if (!songID) return;
-    fetch(`${API}/review.php?songID=${songID}&userID=1`)
+    if (!songID || !userID) return;
+
+    fetch(`${API}/review.php?songID=${songID}&userID=${userID}`)
       .then((r) => r.json())
       .then((json) => {
         if (json.exists) {
           setRating(json.rating);
-          setComment(json.comment);
           setOriginalRating(json.rating);
+
+          setComment(json.comment);
           setOriginalComment(json.comment);
         }
       });
-  }, [songID]);
+  }, [songID, userID]);
 
   if (loading) {
     return (
@@ -109,39 +118,45 @@ export default function Details() {
 
   const { song, reviews } = data;
 
-  async function handleSubmitReview(partial: {
-    rating?: number | null;
-    comment?: string | null;
-  }) {
+  async function handleSubmitReview(partial: { rating?: number | null; comment?: string | null }) {
+    if (!userID) {
+      navigate("/login");
+      return;
+    }
+
     try {
       setSubmitting(true);
+
       const res = await fetch(`${API}/review.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           songID: song.songID,
-          userID: 1, // TODO: replace with actual user ID
+          userID,
           rating: partial.rating ?? undefined,
           comment: partial.comment ?? undefined,
         }),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to submit review");
-      }
+      if (!res.ok) throw new Error("Failed to submit review");
 
       toast.success("Review submitted.");
+
+      const newComment = partial.comment ?? comment;
+      const newRating = partial.rating ?? rating;
+
+      setComment(newComment);
+      setRating(newRating);
+      setOriginalComment(newComment);
+      setOriginalRating(newRating);
+
       setShowReviewForm(false);
-      setComment(partial.comment ?? comment);
-      setRating(partial.rating ?? rating);
-      setOriginalComment(partial.comment ?? comment);
-      setOriginalRating(partial.rating ?? rating);
       fetchSongAndReviews(song.songID.toString());
-    } catch (error) {
-      console.error("Error submitting review:", error);
+    } catch (err) {
+      console.error(err);
       toast.error("Error submitting review. Please try again.");
     } finally {
-      await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
+      await new Promise((r) => setTimeout(r, 400));
       setSubmitting(false);
     }
   }
@@ -156,33 +171,27 @@ export default function Details() {
         </Link>
       </div>
 
-      {/* cover + meta + stats */}
+      {/* Song card */}
       <section className="space-y-6">
         <Card className="overflow-hidden pt-0 rounded-2xl shadow-sm">
-          {/* Big cover */}
           <div className="aspect-[4/3] w-full bg-muted overflow-hidden">
             <img
               src={song.albumCover}
               alt={`${song.albumName} cover`}
-              onError={(e) => {
-                e.currentTarget.src = "../image.png";
-              }}
+              onError={(e) => (e.currentTarget.src = "../image.png")}
               className="w-full h-full object-cover"
             />
           </div>
 
-          {/* Text + stats + listen on spotify */}
           <CardContent className="px-6 py-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            {/* Left: title / artist / album */}
+            {/* Left text */}
             <div className="space-y-1">
-              <CardTitle className="text-2xl sm:text-3xl">
-                {song.songName}
-              </CardTitle>
+              <CardTitle className="text-2xl sm:text-3xl">{song.songName}</CardTitle>
               <CardDescription className="text-base text-muted-foreground">
                 {song.artists}
               </CardDescription>
               <p className="text-sm text-muted-foreground">
-                {song.albumName} &#8226; {song.releaseDate.slice(0, 4)}
+                {song.albumName} • {song.releaseDate.slice(0, 4)}
               </p>
 
               <p>
@@ -197,15 +206,13 @@ export default function Details() {
               </p>
             </div>
 
-            {/* Right: rating */}
+            {/* Rating summary */}
             <div className="flex items-center justify-between mb-4 pr-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <Star className="w-6 h-6 fill-yellow-500 text-yellow-500" />
                   <span className="text-3xl font-bold">
-                    {song.avgRating?.toFixed
-                      ? song.avgRating.toFixed(1)
-                      : song.avgRating}
+                    {song.avgRating?.toFixed ? song.avgRating.toFixed(1) : song.avgRating}
                   </span>
                   <span className="text-muted-foreground">/ 5</span>
                 </div>
@@ -217,45 +224,46 @@ export default function Details() {
           </CardContent>
         </Card>
 
-        {/* Quick actions row */}
-        <div className="flex flex-wrap items-center gap-3 justify-between">
-          {/* Stars (rating field) */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>{rating ? `Your rating:` : "Rate this song"}</span>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => {
-                const index = i + 1;
-                const active =
-                  hovered !== null
-                    ? index <= hovered
-                    : rating !== null && index <= rating;
+        {/* Rating Interaction */}
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <span>{rating ? `Your rating:` : "Rate this song"}</span>
 
-                return (
-                  <Star
-                    key={index}
-                    onMouseEnter={() => setHovered(index)}
-                    onMouseLeave={() => setHovered(null)}
-                    onClick={() => {
-                      setRating(index);
-                      setShowReviewForm(true);
-                    }}
-                    className={`w-5 h-5 cursor-pointer transition-colors ${
-                      active
-                        ? "text-yellow-500 fill-yellow-500"
-                        : "text-muted-foreground"
-                    }`}
-                  />
-                );
-              })}
-            </div>
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => {
+              const index = i + 1;
+              const active =
+                hovered !== null
+                  ? index <= hovered
+                  : rating !== null && index <= rating;
+
+              return (
+                <Star
+                  key={index}
+                  onMouseEnter={() => setHovered(index)}
+                  onMouseLeave={() => setHovered(null)}
+                  onClick={() => {
+                    if (!userID) {
+                      navigate("/login");
+                      return;
+                    }
+                    setRating(index);
+                    setShowReviewForm(true);
+                  }}
+                  className={`w-5 h-5 cursor-pointer transition-colors ${
+                    active ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground"
+                  }`}
+                />
+              );
+            })}
           </div>
         </div>
 
-        {showReviewForm && (
+        {/* Review form */}
+        {showReviewForm && userID && (
           <Card className="rounded-2xl border">
             <CardContent className="pt-4 space-y-4">
               <Textarea
-                placeholder="Share your thoughts about this song..."
+                placeholder="Share your thoughts…"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 className="min-h-[140px] text-sm"
@@ -288,7 +296,7 @@ export default function Details() {
         )}
       </section>
 
-      {/* Reviews list */}
+      {/* Reviews */}
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-2xl font-semibold italic">Recent Reviews</h2>

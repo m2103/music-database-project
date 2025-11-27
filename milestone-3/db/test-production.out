@@ -1,24 +1,21 @@
 ______________
 R6: View Song Details
 songID	songName	artists	releaseDate	spotifyURL	albumName	albumCover	avgRating	reviewCount
-1	Sherry	Frankie Valli & The Four Seasons	2003-01-14	spotify:track:0NpvdCO506uO58D4AbKzki	The Very Best of Frankie Valli & The 4 Seasons	https://i.scdn.co/image/ab67616d0000b273b96c21e15c091eb98a6c88a4	3.7	7
+1	Sherry	Frankie Valli & The Four Seasons	2003-01-14	spotify:track:0NpvdCO506uO58D4AbKzki	The Very Best of Frankie Valli & The 4 Seasons	https://i.scdn.co/image/ab67616d0000b273b96c21e15c091eb98a6c88a4	3.5	4
 ______________
 R7: Submitting a review
 ______________
 R8: View User Details
 userName	email	profilePicture	dateJoined
-daniel31_9056	daniel31_9056@example.com	https://picsum.photos/id/889/200/300	2020-01-01
+user1	swood@example.org	https://picsum.photos/seed/user1/200	2023-03-01
 ______________
 R9: Viewing a Song’s Recent Reviews
 userName	rating	comment	timestamp
-qcampbell_3451	3.0	It's ok	2025-10-12 06:00:19
-christine36_1063	4.0	Good but minor issues	2025-09-03 04:01:49
-erin76_7907	5.0	ON REPEAT!!	2025-08-10 05:51:14
-zholmes_8297	2.0	Not my taste	2025-03-06 06:13:28
-vickilee_4231	2.0	Not my taste	2024-12-12 14:54:33
-brianhernandez_9940	5.0	Instant classic.	2024-06-16 17:21:36
-matthew55_2113	5.0	Instant classic.	2024-01-09 09:29:11
+user5374	5.0	Absolutely flawless!	2025-06-14 09:54:11
+user375	1.0	Terrible	2025-02-12 20:44:59
+user8025	3.0	It's ok	2024-11-18 23:43:02
+user7813	5.0	Instant classic.	2024-08-02 09:29:08
 ______________
 R10: Viewing a User’s Recent Reviews
 recentReviews
-[{"rating": 2.0, "songID": 523, "albumID": 520, "artists": "The Chicks", "comment": "Two stars for trying.", "reviewID": 76710, "songName": "Landslide", "albumName": "The Essential The Chicks", "timestamp": "2025-09-30"}, {"rating": 5.0, "songID": 704, "albumID": 694, "artists": "Cosima De Vito", "comment": "ON REPEAT!!", "reviewID": 86456, "songName": "When the War Is Over", "albumName": "When the War Is Over", "timestamp": "2025-07-26"}, {"rating": 3.0, "songID": 1872, "albumID": 1748, "artists": "Eminem", "comment": "Average", "reviewID": 50314, "songName": "Berzerk", "albumName": "The Marshall Mathers LP2 (Deluxe)", "timestamp": "2025-04-24"}, {"rating": 1.0, "songID": 3679, "albumID": 5217, "artists": "Céline Dion", "comment": "Do people actually listen to this?", "reviewID": 35006, "songName": "Because You Loved Me", "albumName": "Falling Into You", "timestamp": "2025-02-10"}, {"rating": 4.0, "songID": 2460, "albumID": 2237, "artists": "Climie Fisher", "comment": "Straight into my playlist", "reviewID": 20431, "songName": "Love Changes (Everything)", "albumName": "Everything", "timestamp": "2025-01-04"}]
+[{"rating": 4.0, "songID": 9538, "albumID": 7191, "artists": "Whitesnake", "comment": "Straight into my playlist", "reviewID": 31285, "songName": "Here I Go Again - 1987 Version; 2008 Remaster", "albumName": "Here I Go Again (1987 Version)", "timestamp": "2025-07-26"}, {"rating": 4.0, "songID": 9730, "albumID": 5872, "artists": "Imagine Dragons", "comment": "Love the vibes", "reviewID": 86258, "songName": "Radioactive", "albumName": "Night Visions (Deluxe)", "timestamp": "2025-05-12"}, {"rating": 4.0, "songID": 8332, "albumID": 6450, "artists": "Ronnie And The Hi-Lites", "comment": "Straight into my playlist", "reviewID": 87419, "songName": "I Wish That We Were Married", "albumName": "I Wish That We Were Married", "timestamp": "2025-04-22"}, {"rating": 4.0, "songID": 9396, "albumID": 7110, "artists": "KIAN", "comment": "Good but minor issues", "reviewID": 27603, "songName": "Waiting", "albumName": "Waiting", "timestamp": "2025-03-15"}, {"rating": 2.0, "songID": 8456, "albumID": 1835, "artists": "Buddy Holly, The Crickets", "comment": "Two stars for trying.", "reviewID": 84454, "songName": "Everyday", "albumName": "Buddy Holly", "timestamp": "2025-03-07"}]

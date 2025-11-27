@@ -1,18 +1,21 @@
 ______________
 R6: View Song Details
 songID	songName	artists	releaseDate	spotifyURL	albumName	albumCover	avgRating	reviewCount
-1	Blinding Lights	The Weeknd	2019-11-29	https://open.spotify.com/track/blindinglights	After Hours	https://example.com/afterhours.jpg	5.0	1
+1	Sherry	Frankie Valli & The Four Seasons	2003-01-14	spotify:track:0NpvdCO506uO58D4AbKzki	The Very Best of Frankie Valli & The 4 Seasons	https://i.scdn.co/image/ab67616d0000b273b96c21e15c091eb98a6c88a4	3.5	4
 ______________
 R7: Submitting a review
 ______________
 R8: View User Details
 userName	email	profilePicture	dateJoined
-alice	alice@email.com	https://example.com/alice.jpg	2025-10-01
+user1	swood@example.org	https://picsum.photos/seed/user1/200	2023-03-01
 ______________
 R9: Viewing a Song’s Recent Reviews
 userName	rating	comment	timestamp
-alice	5.0	Amazing song!	2025-10-19 10:00:00
+user5374	5.0	Absolutely flawless!	2025-06-14 09:54:11
+user375	1.0	Terrible	2025-02-12 20:44:59
+user8025	3.0	It's ok	2024-11-18 23:43:02
+user7813	5.0	Instant classic.	2024-08-02 09:29:08
 ______________
 R10: Viewing a User’s Recent Reviews
 recentReviews
-[{"rating": 5.0, "songID": 1, "albumID": 1, "artists": "The Weeknd", "comment": "Amazing song!", "reviewID": 1, "songName": "Blinding Lights", "albumName": "After Hours", "timestamp": "2025-10-19"}, {"rating": 4.0, "songID": 9, "albumID": 4, "artists": "Imagine Dragons", "comment": "Catchy chorus!", "reviewID": 8, "songName": "Believer", "albumName": "Evolve", "timestamp": "2025-10-19"}, {"rating": 5.0, "songID": 19, "albumID": 2, "artists": "Dua Lipa", "comment": "Amazing production!", "reviewID": 18, "songName": "Save Your Soul", "albumName": "Dawn FM", "timestamp": "2025-10-18"}, {"rating": 5.0, "songID": 6, "albumID": 3, "artists": "Dua Lipa", "comment": "Incredible!", "reviewID": 26, "songName": "Levitating", "albumName": "Future Nostalgia", "timestamp": "2025-10-08"}, {"rating": 5.0, "songID": 16, "albumID": 6, "artists": "Billie Eilish", "comment": "Top track!", "reviewID": 36, "songName": "Everyday Life", "albumName": "Everyday Life", "timestamp": "2025-09-28"}]
+[{"rating": 4.0, "songID": 3502, "albumID": 3090, "artists": "Post Malone", "comment": "test review", "reviewID": 100008, "songName": "Circles", "albumName": "Circles", "timestamp": "2025-11-25"}, {"rating": 5.0, "songID": 2484, "albumID": 2258, "artists": "Ashlee Simpson", "comment": "test", "reviewID": 100006, "songName": "L.O.V.E.", "albumName": "I Am Me (International Version)", "timestamp": "2025-11-25"}, {"rating": 5.0, "songID": 5990, "albumID": 4918, "artists": "Dusty Springfield", "comment": "test review", "reviewID": 100003, "songName": "Son Of A Preacher Man", "albumName": "Dusty In Memphis", "timestamp": "2025-11-25"}, {"rating": 3.0, "songID": 3704, "albumID": 3248, "artists": "XTC", "comment": null, "reviewID": 100002, "songName": "Senses Working Overtime - Remastered 2001", "albumName": "English Settlement", "timestamp": "2025-11-25"}, {"rating": 4.0, "songID": 5035, "albumID": 251, "artists": "Michael Bublé", "comment": null, "reviewID": 100001, "songName": "I Wanna Be Around", "albumName": "Nobody but Me (Deluxe)", "timestamp": "2025-11-25"}]

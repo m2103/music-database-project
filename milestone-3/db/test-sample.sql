@@ -20,6 +20,7 @@ VALUES (2, 5, 4, 'my favourite!');
 
 SELECT 'R8: View User Details' as ______________;
 SELECT 
+    name,
     username AS userName,
     email,
     profilePicture,
@@ -29,6 +30,7 @@ WHERE userID = 1;
 
 SELECT 'R9: Viewing a Song’s Recent Reviews' as ______________;
 SELECT 
+    u.name,
     u.username AS userName,
     r.rating,
     r.comment,

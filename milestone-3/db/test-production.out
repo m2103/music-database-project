@@ -6,15 +6,15 @@ ______________
 R7: Submitting a review
 ______________
 R8: View User Details
-userName	email	profilePicture	dateJoined
-user1	swood@example.org	https://picsum.photos/seed/user1/200	2023-03-01
+name	userName	email	profilePicture	dateJoined
+Michael Thomas	user1	swood@example.org	https://picsum.photos/seed/user1/200	2023-03-01
 ______________
 R9: Viewing a Song’s Recent Reviews
-userName	rating	comment	timestamp
-user5374	5.0	Absolutely flawless!	2025-06-14 09:54:11
-user375	1.0	Terrible	2025-02-12 20:44:59
-user8025	3.0	It's ok	2024-11-18 23:43:02
-user7813	5.0	Instant classic.	2024-08-02 09:29:08
+name	userName	rating	comment	timestamp
+Allison Stephens	user5374	5.0	Absolutely flawless!	2025-06-14 09:54:11
+Helen Obrien	user375	1.0	Terrible	2025-02-12 20:44:59
+Matthew Wilkerson	user8025	3.0	It's ok	2024-11-18 23:43:02
+Mary Anderson	user7813	5.0	Instant classic.	2024-08-02 09:29:08
 ______________
 R10: Viewing a User’s Recent Reviews
 recentReviews

@@ -6,12 +6,12 @@ ______________
 R7: Submitting a review
 ______________
 R8: View User Details
-userName	email	profilePicture	dateJoined
-alice	alice@email.com	https://example.com/alice.jpg	2025-10-01
+name	userName	email	profilePicture	dateJoined
+Alice Smith	alice	alice@email.com	https://example.com/alice.jpg	2025-10-01
 ______________
 R9: Viewing a Song’s Recent Reviews
-userName	rating	comment	timestamp
-alice	5.0	Amazing song!	2025-10-19 10:00:00
+name	userName	rating	comment	timestamp
+Alice Smith	alice	5.0	Amazing song!	2025-10-19 10:00:00
 ______________
 R10: Viewing a User’s Recent Reviews
 recentReviews
